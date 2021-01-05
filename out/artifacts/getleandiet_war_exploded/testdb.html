@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title> 
+    <script type="text/javascript">
+
+        var bmr;
+        var bmi;
+        var name="cc";
+        var age=18;
+        var weigh=40;
+        var high=1.62;
+        var sex="女";
+        var bmr,bmi;
+        var iphone="13777838770";
+        var password="20000127";
+        if (sex == "男") {
+            bmr = weigh + 6.25 * high - 5 * age + 5;
+        } else {
+            bmr = weigh + 6.25 * high - 5 * age - 161;
+        }
+        bmi = weigh / (high * high);
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        var msg;
+
+
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
+                var len = results.rows.length, i;
+                msg = "<p>查询记录条数: " + len + "</p>";
+                document.querySelector('#status').innerHTML +=  msg;
+
+                for (i = 0; i < len; i++){
+                    msg = "<p><b>" + results.rows.item(i).iphone +results.rows.item(i).sex+results.rows.item(i).bmi+results.rows.item(i).bmr+ "</b></p>";
+                    document.querySelector('#status').innerHTML +=  msg;
+                }
+            }, null);
+        });
+        window.open()
+
+
+    </script>
+
+</head>
+
+<body>
+<div id="status" name="status">状态信息</div>
+</body>
+
+</html>

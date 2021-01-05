@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/daohanglan.css">
+    <script type="text/javascript" src="js/register.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 50%;
+
+        }
+        li a:hover:not(.dropbtn) {
+            background-color: #ddd;
+        }
+
+        li a.dropbtn{
+            color: white;
+            background-color: black;
+        }
+        #register-box {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 5%;
+            background: #00000080;
+            padding: 20px 50px;
+        }
+        #register-box h1,h2 {
+            color: white;
+        }
+        #register-box .form .item input,select{
+            width: 300px; /* 设置合适的宽度 */
+            border: 0; /* 首先将边界取消，方便下面修改下部边界宽度 */
+            border-bottom: 5px solid white; /* 将下边界进行修改，显示出横线效果 */
+            font-size: 18px; /* 将字体适当的变大加粗 */
+            background: #ffffff00; /* 将输入框设置为透明 */
+            color: black; /* 上面的文本颜色设置为白色，但是placeholder的颜色要单独设置 */
+            padding: 5px 10px; /* 为了placeholder的内容不是顶格显示，增加内部边界 */
+
+        }
+        p{
+            color:white;
+        }
+        .register{
+            float:right;
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+    <ul>
+        <li><a href="main.html" >主页</a></li>
+        <li><a href="text.html">测试</a></li>
+        <li><a class="information"href="userinformation.html">个人资料</a></li>
+        <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+    </ul>
+    <div id="register">
+            <form method="get" onsubmit="return register()">
+                <div id="register-box">
+                <h1>注册</h1>
+                <div class="form">
+                    <div class="item">
+                        <p>姓名:
+                        <input type="text" id="name" name="name" placeholder="你的名字..">
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>年龄:
+                        <input type="text" id="age" name="age"placeholder="你的年龄..">
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>体重(kg):
+                        <input type="text" id="weigh" name="weigh"placeholder="你的体重..">
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>身高(m):
+                        <input type="text" id="high" name="high"placeholder="你的身高..">
+                        </p>
+                    </div>
+
+                    <div class="item">
+                        <p>性别:
+                        <select id="sex" name="sex" placeholder="你的性别..">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>手机号:
+                        <input type="text" id="iphone" name="iphone"placeholder="手机号..">
+                        </p>
+                    </div>
+                    <div class="item">
+                        <p>密码:
+                        <input type="text" id="password" name="password"placeholder="密码..">
+                        </p>
+                    </div>
+                </div>
+                    <input class="register" type="submit"  value="注册">
+                </div>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>

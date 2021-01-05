@@ -1,0 +1,144 @@
+
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<style>
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .col-25 {
+        float: left;
+        width: 40%;
+        margin-top: 6px;
+    }
+
+    .col-75 {
+        float: left;
+        width: 40%;
+        margin-top: 6px;
+    }
+
+    /* 清除浮动 */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* 响应式布局 layout - 在屏幕宽度小于 600px 时， 设置为上下堆叠元素 */
+    @media screen and (max-width: 600px) {
+        .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+</style>
+<h3 color="white">BMR测试</h3>
+<div class="container">
+    <form action="bmr.jsp" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="country">性别:</label>
+            </div>
+            <div class="col-75">
+                <select id="sex" name="sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label  for="lname">身高(m):</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="high" name="high"placeholder="xxx">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label  for="lname">体重(kg):</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="weigh" name="weigh"placeholder="xxx">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label  for="lname">年龄:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="age" name="age"placeholder="xxx">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label  for="lname">运动系数:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="sport" name="sport"placeholder="xxx">
+            </div>
+            <div>
+                <li>运动系数参照</li>
+                <li>①无运动习惯:1.2   ②每周运动1-2次(心率<=120):1.375  ③每周运动3-5次(心率<=150):1.55  ④每周运动6-7次:1.725  ⑤从事非常高强度运动或活动的人群:1.9
+                </li>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label  for="lname">减脂系数:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="cut_fat" name="cut_fat"placeholder="xxx">
+            </div>
+            <div>
+                <li>减脂系数参照</li>
+                <li>①无运动习惯:0.9   ②每周运动1-2次(心率<=120):0.85  ③每周运动3-5次(心率<=150):0.8  ④每周运动6-7次:0.8  ⑤从事非常高强度运动或活动的人群:0.8
+                </li>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <input type="submit" value="测试">
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

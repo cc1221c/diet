@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS/daohanglan.css">
+    <script type="text/javascript" src="js/login.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 50%;
+            /*background-image: url("photo/backphoto.jpg");
+            background-size:cover;*/
+
+
+        }
+
+
+        i a:hover:not(.dropbtn) {
+            background-color: #ddd;
+        }
+
+        li a.dropbtn{
+            color: white;
+            background-color: black;
+        }
+        #login-box {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 15%;
+            background: #00000080;
+            padding: 20px 50px;
+        }
+        #login-box h1 {
+            color: white;
+        }
+        #login-box .form .item input {
+            width: 200px; /* 设置合适的宽度 */
+            border: 0; /* 首先将边界取消，方便下面修改下部边界宽度 */
+            border-bottom: 5px solid white; /* 将下边界进行修改，显示出横线效果 */
+            font-size: 18px; /* 将字体适当的变大加粗 */
+            background: #ffffff00; /* 将输入框设置为透明 */
+            color: white; /* 上面的文本颜色设置为白色，但是placeholder的颜色要单独设置 */
+            padding: 5px 10px; /* 为了placeholder的内容不是顶格显示，增加内部边界 */
+        }
+
+
+        .login {
+
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+        }
+        .register{
+            float:right;
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+
+        }
+
+
+    </style>
+</head>
+<body class="full">
+<script>
+    var i = sessionStorage.getItem("iphone");
+    if(i.length!=0){
+        var str="exit.html";
+        window.location.href=str;
+        window.location.replace=(str);
+    }
+    function login(){
+
+        var iphone=document.getElementById("iphone").value;
+        var password=document.getElementById("password").value;
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        var msg;
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++){
+                    msg = results.rows.item(i).iphone ;
+                    if(iphone==msg&&password==results.rows.item(i).password){
+
+                        alert("登录成功");
+                        sessionStorage.setItem('iphone',iphone);
+                        var str="userinformation.html";
+                        window.location.href=str;
+                        window.location.replace=(str);
+                        i=-1;
+                        break;
+
+                    }
+                }
+                if(i!=-1){
+                    alert("登录错误，请检查账号密码是否正确");
+                }
+            }, null);
+        });
+        return false;
+    }
+</script>
+<div>
+    <img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+
+<ul>
+    <li><a class="main" href="main.html" >主页</a></li>
+    <li><a href="test.html">测试</a></li>
+    <li><a class="information"href="userinformation.html">个人资料</a></li>
+    <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+</ul>
+    <form method="get" onsubmit="return login()">
+        <div id="login-box">
+            <h1>登录</h1> <!-- Login的大标题 -->
+
+            <div class="form">
+                <div class="item"> <!-- username部分 -->
+                    <img src="photo/iphone.png" aria-hidden="true" width="30px"></img> <!-- 将来用来绘制username前面的图标 -->
+                    <input type="text" placeholder="iphone" name="iphone" id="iphone"> <!-- 用文本框实现的username的输入 -->
+                </div>
+
+                <div class="item"> <!-- password部分 -->
+                    <img src="photo/password.png"aria-hidden="true" width="30px"></i> <!-- 将来用来绘制password前面的图标 -->
+                    <input type="password" placeholder="password" name="password" id="password"> <!-- 用password文本框实现的密码输入 -->
+                </div>
+
+            </div>
+
+            <button class="login" type="submit">登录</button> <!-- 用button实现的Login登陆按钮 -->
+            <input class="register" type="button" value="注册" onclick="javascrtpt:window.location.href='register.html'" />
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>

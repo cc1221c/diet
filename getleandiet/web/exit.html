@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS/daohanglan.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 50%;
+
+
+        }
+
+
+
+        i a:hover:not(.dropbtn) {
+            background-color: #ddd;
+        }
+
+        li a.dropbtn{
+            color: white;
+            background-color: black;
+        }
+        #exit-box{
+            border:1px solid black;
+            width:100%;
+            text-align:center;
+            margin:0 auto;
+            margin-top:15%;
+            background:#00000080;
+            padding:20px 50px;
+        }
+        #exit-box h1{
+            color:white;
+        }
+        #login-box.form p{
+            font-size: 18px;
+            color: white; /* 上面的文本颜色设置为白色，但是placeholder的颜色要单独设置 */
+            padding: 5px 10px;
+        }
+        .yes{
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div>
+    <img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+
+    <ul>
+        <li><a class="main" href="main.html" >主页</a></li>
+        <li><a href="text.html">测试</a></li>
+        <li><a class="information"href="userinformation.html">个人资料</a></li>
+        <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+    </ul>
+
+    <form action="login.html" method="post">
+        <div id="exit-box">
+            <h1>退出</h1>
+            <div class="form">
+                <p>您当前的账号为:</p>
+                <p  id="pid"></p>
+                <script type="text/javascript">
+                    var iphone = sessionStorage.getItem("iphone");
+                    document.getElementById("pid").innerHTML=""+iphone;
+                    function exitlogin(){
+                        sessionStorage.removeItem("iphone");
+                        alert("退出成功");
+                        location.href="login.html";
+                    }
+                </script>
+                <p >是否要退出该账号</p>
+                <input class="yes" type="button" value="退出" onclick="exitlogin()" />
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

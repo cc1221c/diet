@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<h2 color="white">WHR测试结果:</h2>
+<div>您的WHR测试值为:</div>
+<div><%=whr%></div>
+<%
+if(usex.equals("男")&&whr>1.0){
+%>
+<div>
+    <li>您腹部中心性肥胖</li>
+    <li>要注意哦!</li>
+</div>
+<%}
+
+else if(usex.equals("男")&&whr<=1.0){%>
+<div>
+    <li>您的腹部中心测试值正常</li>
+    <li>不属于腹部中心肥胖类型哦</li>
+</div>
+
+<%}
+
+else if(usex.equals("女")&&whr>0.85){
+%>
+<div>
+    <li>您腹部中心性肥胖</li>
+    <li>要注意哦!</li>
+</div>
+
+<%}
+
+else if(usex.equals("女")&&whr<=0.85){%>
+<div>
+    <li>您的腹部中心测试值正常</li>
+    <li>不属于腹部中心肥胖类型哦</li>
+</div>
+
+<%}%>
+
+</body>
+</html>

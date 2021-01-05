@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS/daohanglan.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 80%;
+
+        }
+        .test{
+            border-radius: 25px;
+            margin:50px;
+            padding:50px;
+            height:100%;
+            width:100%;
+            float:left;
+        }
+        .column{
+            float:left;
+            padding:20px;
+            margin:0 auto;
+            height:100%;
+        }
+        .column.left{
+            background-color:#00000080;
+            border-radius:25px;
+            width:30%;
+            padding:30px;
+            margin-right:10%;
+        }
+        .column.right{
+            background-color:#00000080;
+            border-radius: 25px;
+            width:60%;
+            height:500px;
+            padding:30px;
+            margin:0 auto;
+        }
+        .button {
+            border-radius: 25px;
+            background-color:black;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .exit{
+            padding-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+<img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+<div class="test">
+    <div  class="column left">
+        <div class="bmi">
+            <a href="testbmi.html" class="button" target="iframe_test">BMI(身体素质)测试</a>
+        </div>
+        <div class="bmr">
+            <a href="testbmr.html" class="button" target="iframe_test">BMR(基础代谢)测试</a>
+        </div>
+        <div class="whr">
+            <a href="testwhr.html" class="button" target="iframe_test">WHR(腰臀比)测试</a>
+        </div>
+        <div class="exit">
+            <a href="main.html" class="button">返回主页</a>
+        </div>
+
+    </div>
+    <div class="column right">
+        <iframe src="photo/test.jpg" name="iframe_test" width="100%" height="100%" ></iframe>
+    </div>
+</div>
+
+</body>
+</html>

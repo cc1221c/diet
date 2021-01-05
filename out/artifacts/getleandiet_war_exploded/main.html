@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/daohanglan.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 80%;
+            background-color:#006600;
+
+        }
+
+        li a:hover:not(.main) {
+            background-color: #ddd;
+        }
+
+        li a.main{
+            color: white;
+            background-color: #4CAF50;
+        }
+
+        div.img:hover {
+            border: 1px solid #777;
+        }
+
+        .row:after{
+
+            content:"";
+            clear:both;
+            display:block;
+            width:100%;
+            margin:0 auto;
+        }
+
+        .column.left{
+            border-radius: 25px;
+            width:15%;
+            padding:5px;
+            float:left;
+            height: auto;
+        }
+        .button {
+            border-radius: 25px;
+            background-color:#4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button:hover{
+            background-color:#339966;
+        }
+        .column.right{
+            margin-top:10px;
+            background-color:#4CAF50;
+            border-radius: 25px;
+            width:85%;
+            float:left;
+            height: auto;
+        }
+
+        .column{
+            padding:20px;
+        }
+
+
+        .test{
+            border-radius: 25px;
+            width:100%;
+            margin-top:20px;
+            background-color:#4CAF50;
+            float:left;
+            border:1px;
+        }
+
+        .usertest{
+            padding:5px;
+            float:left;
+            width:70%;
+            height:30%;
+            color:white;
+        }
+
+        .testbmi{
+
+            float:left;
+            width:30%;
+            height:20%;
+        }
+        .b{
+            border-radius:10px;
+
+
+        }
+        .bmi{
+            float:left;
+            list-style-type:none;
+            padding:20px;
+
+
+        }
+        .t1{
+            padding-botton:10px;
+            list-style-type:none;
+            text-align:center;
+        }
+        .t{
+            color:#FFFFFF;
+        }
+        .wbmi{
+            margin-bottom:50px;
+        }
+        .wbmr{
+            padding-top:50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<ul>
+    <li><a class="main" href="main.html" >主页</a></li>
+    <li><a href="test.html">测试</a></li>
+    <li><a class="information"href="userinformation.html">个人资料</a></li>
+    <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+</ul>
+<div class="test">
+    <div class="testbmi">
+        <li class="bmi"><img class="b" src="photo/test.jpg" width="100%" hight="100%"  ></li>
+    </div>
+    <div class="usertest">
+        <div class="wbmi">
+            <h2>什么是BMI？</h2>
+            <li>BMI指数(身体质量指数，简称体质指数，又称体重指数，英文名为Body Mass index,简称BMI) 主要用于统计，当需要比较分析一个人的体重对于不同高度的人所带来的健康影响时，BMI是一个中立而可靠的指标，国际上常用的衡量人体胖瘦程度以及是否健康的一个标准。</li>
+        </div>
+        <div class="wbmr">
+            <h2>什么是BMR？</h2>
+            <li>BMR代表基础代谢，基础代谢是人体维持生命的所有器官所需要的最低能消耗</li>
+            <li class="t1"><a class="t" href="test.html">测测你的身体情况？</a></li>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column left">
+        <div class="aa">
+            <a href="recommend.html" class="button" target="iframe_a">推荐</a>
+        </div>
+        <div class="aa">
+            <a href="protein.jsp" class="button" target="iframe_a">蛋白质</a>
+        </div>
+        <div class="aa">
+            <a href="fat.jsp" class="button" target="iframe_a">脂肪</a>
+        </div>
+        <div class="aa">
+            <a href="carbohydrate.jsp" class="button" target="iframe_a">碳水</a>
+        </div>
+
+    </div>
+    <div class="column right">
+        <iframe src="" name="iframe_a" width="100%" height="600px"></iframe>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div style="padding:6px;">
+
+
+    </div>
+</div>
+</body>
+</html>

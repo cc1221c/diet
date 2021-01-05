@@ -1,0 +1,66 @@
+<%@page import="java.sql.*"%>
+<%@page import="javax.sql.*"%>
+<%@page import="javax.naming.*"%>
+<%request.setCharacterEncoding("utf-8"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<%
+String usex=request.getParameter("sex");
+String uweigh=request.getParameter("weigh");
+String uhigh=request.getParameter("high");
+String uage=request.getParameter("age");
+String usport=request.getParameter("sport");
+double sport=Float.parseFloat(usport);
+String ucut_fat=request.getParameter("cut_fat");
+double ubmr;
+if(usex.equals("男")){
+ubmr = 10*Float.parseFloat(uweigh) + 625*Float.parseFloat(uhigh)-5*Float.parseFloat(uage) + 5;
+}
+else{
+ubmr = 10*Float.parseFloat(uweigh) + 625*Float.parseFloat(uhigh)-5*Float.parseFloat(uage) -161;
+}
+double A =ubmr*Float.parseFloat(usport);/*每日正常摄入热量*/
+double Z =A*Float.parseFloat(ucut_fat);
+%>
+<h2 color="white">BMR测试结果:</h2>
+<li><%=ubmr%></li>
+<div>
+    <li>每日应正常摄入热量为:&nbsp   <%=A%></li>
+    <li>健康减脂摄入热量为:&nbsp   <%=Z%></li>
+</div>
+<div>
+    <h3>碳水，蛋白质，脂肪摄入量:</h3>
+    <%
+    if(sport<=1.2){%>
+    <li>蛋白质摄入量(g):&nbsp   <%=0.8*Float.parseFloat(uweigh)%></li>
+    <li>脂肪摄入量(g):&nbsp   <%=Z*0.3/9%></li>
+    <li>碳水化合物摄入量(g):&nbsp   <%=((Z-Z*0.3-0.8*Float.parseFloat(uweigh)*4))/4%></li>
+    <%}
+    else if(sport>1.2&&sport<=1.375){%>
+    <li>蛋白质摄入量(g):&nbsp   <%=1*Float.parseFloat(uweigh)%></li>
+    <li>脂肪摄入量(g):&nbsp   <%=Z*0.3/9%></li>
+    <li>碳水化合物摄入量(g):&nbsp   <%=((Z-Z*0.3-1*Float.parseFloat(uweigh)*4))/4%></li>
+    <%}
+    else if(sport>1.375&&sport<=1.55){%>
+    <li>蛋白质摄入量(g):&nbsp   <%=1.4*Float.parseFloat(uweigh)%></li>
+    <li>脂肪摄入量(g):&nbsp   <%=Z*0.3/9%></li>
+    <li>碳水化合物摄入量(g):&nbsp   <%=((Z-Z*0.3-1.4*Float.parseFloat(uweigh)*4))/4%></li>
+    <%}
+    else if(sport>1.55&&sport<=1.725){%>
+    <li>蛋白质摄入量(g):&nbsp   <%=1.8*Float.parseFloat(uweigh)%></li>
+    <li>脂肪摄入量(g):&nbsp   <%=Z*0.3/9%></li>
+    <li>碳水化合物摄入量(g):&nbsp   <%=((Z-Z*0.3-1.8*Float.parseFloat(uweigh)*4))/4%></li>
+    <%}
+    if(sport>1.725&&sport<=1.9){%>
+    <li>蛋白质摄入量(g):&nbsp   <%=2.2*Float.parseFloat(uweigh)%></li>
+    <li>脂肪摄入量(g):&nbsp   <%=Z*0.3/9%></li>
+    <li>碳水化合物摄入量(g):&nbsp   <%=((Z-Z*0.3-2.2*Float.parseFloat(uweigh)*4))/4%></li>
+    <%}%>
+
+</div>

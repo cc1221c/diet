@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var iphone = sessionStorage.getItem("iphone");
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++){
+                    msg = results.rows.item(i).iphone ;
+                    if(iphone==msg){
+                        document.getElementById("iphone").innerHTML="电话:"+results.rows.item(i).iphone;
+                        document.getElementById("name").innerHTML="姓名:"+results.rows.item(i).name ;
+                        document.getElementById("sex").innerHTML="性别:"+results.rows.item(i).sex;
+                        document.getElementById("age").innerHTML="年龄:"+results.rows.item(i).age ;
+                        document.getElementById("high").innerHTML="身高:"+results.rows.item(i).high ;
+                        document.getElementById("weigh").innerHTML="体重:"+results.rows.item(i).weigh ;
+                        document.getElementById("bmi").innerHTML="BMI(体重指数):"+results.rows.item(i).bmi ;
+                        document.getElementById("bmr").innerHTML="BMR(基础代谢率):"+results.rows.item(i).bmr;
+                        i=-1;
+                        break;
+                    }
+                }
+                if(i!=-1){
+                    alert("请先登录");
+                    var str="login.html";
+                    window.location.href=str;
+                    window.location.replace=(str);
+                }
+            }, null);
+        });
+    </script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/daohanglan.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 80%;
+
+        }
+        li a:hover:not(.information) {
+            background-color: #ddd;
+        }
+
+        li a.information{
+            color: white;
+            background-color: black;
+        }
+        #userinformation-box{
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 5%;
+            background: #00000080;
+            padding: 20px 50px;
+        }
+        #userinformation-box h1 {
+            color: white;
+        }
+        p{
+            color:white;
+        }
+        .xuserinformation{
+            float:right;
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+            align:center
+
+        }
+
+    </style>
+</head>
+<body>
+<img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+<ul>
+    <li><a class="main" href="main.html" >主页</a></li>
+    <li><a href="test.html">测试</a></li>
+    <li><a class="information"href="userinformation.html">个人资料</a></li>
+    <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+</ul>
+<div id="userinformation-box">
+<h1>个人资料</h1>
+<div>
+    <form action="xuserinformation.html" method="post">
+
+        <p id="name" name="name">名字：</p>
+
+        <p id="sex" name="sex">性别：</p>
+
+        <p id="age" name="age">年龄：</p>
+
+        <p id="high" name="high">身高：</p>
+
+        <p id="weigh" name="weigh">体重：</p>
+
+        <p id="bmr" name="bmr">BMI(体重指数)：</p>
+
+        <p id="bmi" name="bmi">BMR(基础代谢率)：</p>
+
+        <p id="iphone" name="iphone">电话：</p>
+
+        <input type="submit" class="xuserinformation" value="修改">
+        </form>
+</div>
+</div>
+</body>
+</html>

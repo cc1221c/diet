@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/daohanglan.css">
+    <script type="text/javascript" src="js/register.js"></script>
+    <script>
+        var iphone = sessionStorage.getItem("iphone");
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++){
+                    msg = results.rows.item(i).iphone ;
+                    if(iphone==msg){
+                        document.getElementById("password").setAttribute('value',results.rows.item(i).password);
+                        document.getElementById("name").setAttribute('value',results.rows.item(i).name);
+                        document.getElementById("sex").setAttribute('value',results.rows.item(i).sex);
+                        document.getElementById("age").setAttribute('value',results.rows.item(i).age);
+                        document.getElementById("high").setAttribute('value',results.rows.item(i).high);
+                        document.getElementById("weigh").setAttribute('value',results.rows.item(i).weigh);
+                        document.getElementById("bmi").setAttribute('value',results.rows.item(i).bmi);
+                        document.getElementById("bmr").setAttribute('value',results.rows.item(i).bmr);
+                        break;
+                    }
+                }
+            }, null);
+        });
+        function xuserinformation() {
+            var iphone = sessionStorage.getItem("iphone");
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var weigh = document.getElementById("weigh").value;
+            var high = document.getElementById("high").value;
+            var sex = document.getElementById("sex").value; //定位id
+            var bmr;
+            var bmi;
+            if (sex == "男") {
+                bmr = weigh + 6.25 * high - 5 * age + 5;
+            } else {
+                bmr = weigh + 6.25 * high - 5 * age - 161;
+            }
+            bmi = weigh / (high * high);
+            var password = document.getElementById("password").value;
+            var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+            var msg;
+            db.transaction(function (tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS use(iphone unique, password,name,age,weigh,high,sex,bmr,bmi)');
+                tx.executeSql('update use set password=?,name=?,age=?,weigh=?,high=?,sex=?,bmr=?,bmi=?where iphone=iphone', [password,name,age,weigh,high,sex,bmr,bmi]);
+                alert("修改成功");
+            });
+            var str="userinformation.html";
+            window.location.href=str;
+            window.location.replace=(str);
+            return false;
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            margin: auto;
+            width: 50%;
+
+        }
+        li a:hover:not(.information) {
+            background-color: #ddd;
+        }
+
+        li a.information{
+            color: white;
+            background-color: black;
+        }
+        #register-box {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 5%;
+            background: #00000080;
+            padding: 20px 50px;
+        }
+        #register-box h1,h2 {
+            color: white;
+        }
+        #register-box .form .item input{
+            width: 300px; /* 设置合适的宽度 */
+            border: 0; /* 首先将边界取消，方便下面修改下部边界宽度 */
+            border-bottom: 5px solid white; /* 将下边界进行修改，显示出横线效果 */
+            font-size: 18px; /* 将字体适当的变大加粗 */
+            background: #ffffff00; /* 将输入框设置为透明 */
+            color: black; /* 上面的文本颜色设置为白色，但是placeholder的颜色要单独设置 */
+            padding: 5px 10px; /* 为了placeholder的内容不是顶格显示，增加内部边界 */
+
+        }
+        p{
+            color:white;
+        }
+        .xuesrinformation{
+
+            border: 0; /* 取消按钮的边界 */
+            width: 150px; /* 设置合适的按钮的长和宽 */
+            height: 30px;
+            margin-top: 18px; /* 设置合适的上部外框的宽度，增加与上面的password框的距离 */
+            font-size: 18px; /* 修改按钮文字的大小 */
+            color: white; /* 修改按钮上文字的颜色 */
+            border-radius: 25px; /* 将按钮的左右边框设置为圆弧 */
+            background-color:black;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
+<ul>
+    <li><a href="main.html" >主页</a></li>
+    <li><a href="test.html">测试</a></li>
+    <li><a class="information"href="userinformation.html">个人资料</a></li>
+    <li><a class="dropbtn" href="login.html">登录/注册</a></li>
+</ul>
+<div id="register">
+    <form method="get" onsubmit="return xuserinformation()">
+        <div id="register-box">
+            <h1>修改个人信息</h1>
+            <div class="form">
+                <div class="item">
+                    <p>姓名:
+                        <input type="text" id="name" name="name" placeholder="你的名字..">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>年龄:
+                        <input type="text" id="age" name="age">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>体重(kg):
+                        <input type="text" id="weigh" name="weigh">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>身高(m):
+                        <input type="text" id="high" name="high">
+                    </p>
+                </div>
+
+                <div class="item">
+                    <p>性别:
+                        <input type="text" id="sex" name="sex">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>BMI:
+                        <input type="text" id="bmi" name="bmi">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>BMR:
+                        <input type="text" id="bmr" name="bmr">
+                    </p>
+                </div>
+                <div class="item">
+                    <p>密码:
+                        <input type="text" id="password" name="password">
+                    </p>
+                </div>
+            </div>
+            <input class="xuesrinformation" type="submit"  value="修改">
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>
