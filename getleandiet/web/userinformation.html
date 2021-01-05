@@ -2,37 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        var iphone = sessionStorage.getItem("iphone");
-        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-        db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
-                var len = results.rows.length, i;
-                for (i = 0; i < len; i++){
-                    msg = results.rows.item(i).iphone ;
-                    if(iphone==msg){
-                        document.getElementById("iphone").innerHTML="电话:"+results.rows.item(i).iphone;
-                        document.getElementById("name").innerHTML="姓名:"+results.rows.item(i).name ;
-                        document.getElementById("sex").innerHTML="性别:"+results.rows.item(i).sex;
-                        document.getElementById("age").innerHTML="年龄:"+results.rows.item(i).age ;
-                        document.getElementById("high").innerHTML="身高:"+results.rows.item(i).high ;
-                        document.getElementById("weigh").innerHTML="体重:"+results.rows.item(i).weigh ;
-                        document.getElementById("bmi").innerHTML="BMI(体重指数):"+results.rows.item(i).bmi ;
-                        document.getElementById("bmr").innerHTML="BMR(基础代谢率):"+results.rows.item(i).bmr;
-                        i=-1;
-                        break;
-                    }
-                }
-                if(i!=-1){
-                    alert("请先登录");
-                    var str="login.html";
-                    window.location.href=str;
-                    window.location.replace=(str);
-                }
-            }, null);
-        });
-    </script>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
      <link rel="stylesheet" type="text/css" href="CSS/daohanglan.css">
     <style>
         * {
@@ -81,6 +51,37 @@
         }
 
     </style>
+    <script>
+        var iphone = sessionStorage.getItem("iphone");
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM use', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++){
+                    msg = results.rows.item(i).iphone ;
+                    if(iphone==msg){
+                        document.getElementById("iphone").innerHTML="电话:"+results.rows.item(i).iphone;
+                        document.getElementById("name").innerHTML="姓名:"+results.rows.item(i).name ;
+                        document.getElementById("sex").innerHTML="性别:"+results.rows.item(i).sex;
+                        document.getElementById("age").innerHTML="年龄:"+results.rows.item(i).age ;
+                        document.getElementById("high").innerHTML="身高:"+results.rows.item(i).high ;
+                        document.getElementById("weigh").innerHTML="体重:"+results.rows.item(i).weigh ;
+                        document.getElementById("bmi").innerHTML="BMI(体重指数):"+results.rows.item(i).bmi ;
+                        document.getElementById("bmr").innerHTML="BMR(基础代谢率):"+results.rows.item(i).bmr;
+                        i=-1;
+                        break;
+                    }
+                }
+                if(i!=-1){
+                    alert("请先登录");
+                    var str="login.html";
+                    window.location.href=str;
+                    window.location.replace=(str);
+                }
+            }, null);
+        });
+    </script>
+  
 </head>
 <body>
 <img src="photo/backphoto.jpg"  width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">
